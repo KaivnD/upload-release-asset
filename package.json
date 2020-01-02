@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint 'src/**.js' 'tests/**.js' --fix",
     "test": "eslint 'src/**.js' 'tests/**.js' && jest --coverage",
-    "build": "ncc build src/main.js",
+    "build": "ncc build src/main.js -m",
     "precommit": "npm run build && git add dist/"
   },
   "repository": {
@@ -23,7 +23,8 @@
   "dependencies": {
     "@actions/core": "^1.0.0",
     "@actions/exec": "^1.0.0",
-    "@actions/github": "^1.0.0"
+    "@actions/github": "^1.0.0",
+    "mime-types": "^2.1.25"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.20.4",
@@ -34,9 +35,9 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^2.7.0",
     "eslint-plugin-react": "^7.12.4",
+    "husky": "^3.0.5",
     "jest": "^24.8.0",
-    "prettier": "^1.16.4",
-    "husky": "^3.0.5"
+    "prettier": "^1.16.4"
   },
   "jest": {
     "testEnvironment": "node",
