@@ -22,7 +22,11 @@ async function upload(file, uploadUrl) {
     file: fs.readFileSync(file.path)
   })
 
-  return uploadAssetResponse.data.value.browser_download_url
+  const {
+    data: { browser_download_url: browserDownloadUrl }
+  } = uploadAssetResponse
+
+  return browserDownloadUrl
 }
 
 async function run() {
@@ -34,7 +38,7 @@ async function run() {
         if (!fs.existsSync(filePath)) return null
         const fileInfo = path.parse(filePath)
         return {
-          name: fileInfo.name,
+          name: fileInfo.base,
           length: contentLength(filePath),
           path: path.resolve(filePath),
           type: mime.lookup(fileInfo.base) || 'application/octet-stream'
